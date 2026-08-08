@@ -1,14 +1,10 @@
 package com.upss.core;
 
-// import lombok.AllArgsConstructor;
-// import lombok.Builder;
-// import lombok.Data;
-// import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
-// @Data
-// @NoArgsConstructor
-// @AllArgsConstructor
-// @Builder
+@Getter
+@ToString(exclude = "loadedAt")
 public class Prompt {
     private final String id;
     private final String content;
@@ -24,32 +20,7 @@ public class Prompt {
         this.loadedAt = System.currentTimeMillis();
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public String getRiskLevel() {
-        return riskLevel;
-    }
-
-    public long getLoadedAt() {
-        return loadedAt;
-    }
-
     public boolean isCritical() {
         return "critical".equalsIgnoreCase(riskLevel);
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Prompt{id='%s', version='%s', riskLevel='%s'}", id, version, riskLevel);
     }
 }
