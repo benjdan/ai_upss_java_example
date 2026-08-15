@@ -5,15 +5,13 @@ import com.upss.core.Prompt;
 import java.util.HashMap;
 import java.util.Map;
 
-//import lombok.AllArgsConstructor;
-//import lombok.Builder;
-//import lombok.Data;
-//import lombok.NoArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Builder
+@Data
+@NoArgsConstructor
+@Builder
 public class PipelineResult {
     private final Prompt prompt;
     private final String userInput;
@@ -29,22 +27,6 @@ public class PipelineResult {
         this.sanitizedInput = userInput;
     }
 
-    public Prompt getPrompt() {
-        return prompt;
-    }
-
-    public String getUserInput() {
-        return userInput;
-    }
-
-    public String getSanitizedInput() {
-        return sanitizedInput;
-    }
-
-    public void setSanitizedInput(String sanitizedInput) {
-        this.sanitizedInput = sanitizedInput;
-    }
-
     public boolean isPassed() {
         return passed;
     }
@@ -52,10 +34,6 @@ public class PipelineResult {
     public void fail(String error) {
         this.passed = false;
         this.lastError = error;
-    }
-
-    public String getLastError() {
-        return lastError;
     }
 
     public void addContext(String key, Object value) {
@@ -66,20 +44,12 @@ public class PipelineResult {
         context.putAll(contextData);
     }
 
-    public Object getContext(String key) {
-        return context.get(key);
-    }
-
     public Map<String, Object> getAllContext() {
         return new HashMap<>(context);
     }
 
     public void addError(String stage, String errorMessage) {
         errors.put(stage, errorMessage);
-    }
-
-    public Map<String, String> getErrors() {
-        return new HashMap<>(errors);
     }
 
     @Override
